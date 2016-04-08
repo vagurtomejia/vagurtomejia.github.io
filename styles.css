@@ -1,6 +1,17 @@
 
+nav {
+  margin: 0px;
+  border-bottom: 6px ridge #C5F5EB;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 5px 5px;
+    padding: 0;
+}
+
 body {
-    font-family: Helvetica, Verdana, Arial, sans-serif;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
 }
 
 article h2 {
