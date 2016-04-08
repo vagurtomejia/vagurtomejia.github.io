@@ -7,3 +7,11 @@
 .art-perso {
   //background:#39d4c8
 }
+
+#body-nvc {
+  /*background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/02/Giraffe_Ithala_KZN_South_Africa_Luca_Galuzzi_2004.JPG);
+  background-repeat: no-repeat;
+  background-position: center center fixed;*/
+  background: url(https://upload.wikimedia.org/wikipedia/commons/0/02/Giraffe_Ithala_KZN_South_Africa_Luca_Galuzzi_2004.JPG) no-repeat center center fixed;
+  background-size: cover;
+}
