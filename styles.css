@@ -1,17 +1,36 @@
+
 body {
     font-family: Helvetica, Verdana, Arial, sans-serif;
+}
+
+article h2 {
+  margin-bottom: 0px;
+}
+
+header p {
+    color: #aaa;
+    font-size: 12px;
 }
 
 a:visited {
   color: green;
 }
 
+article {
+  padding: 10px 2% 20px;
+  width: 80%;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
 .art-tech {
-  //background:#39d4c8
+  background-color: #EFEFEF;
+  /*padding: 0px; margin: 1px 0px 0px; border: 0px none; visibility: hidden; width: 30px; height: 0px; position: static; top: 0px;*/
 }
 
 .art-perso {
-  //background:#39d4c8
+  //background: #C5F5EB;
+  background: #E2FAF5;
 }
 
 #body-nvc {
