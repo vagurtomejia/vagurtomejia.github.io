@@ -19,3 +19,10 @@ a:visited {
   background-size: cover;
 }
 
+.foot-main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+
