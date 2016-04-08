@@ -53,9 +53,16 @@ article {
 }
 
 .foot-main {
+    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 200px;
+}
+
+@media screen and (max-width: 500px) {
+  article {
+      width: 100%;
+    }
 }
 
 
