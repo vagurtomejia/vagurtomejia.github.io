@@ -59,16 +59,18 @@ article {
 }
 
 .foot-main {
-    display: block;
-    margin-left: auto;
+    margin-left: 50%;
     margin-right: auto;
-    width: 200px;
+    width: 100%;
 }
 
 @media screen and (max-width: 500px) {
   article {
-      width: 100%;
+    width: 100%;
     }
+  #body-nvc {
+    background-image: none;
+  }
 }
 
 
