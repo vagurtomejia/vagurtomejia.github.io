@@ -204,10 +204,13 @@ Any arguments passed to the matcher will be passed on to the predicate method.
 
     people_with_area_code_419 = people.select { |person| /\A1-419/.match person.phone }
 
-
 ##Enumerables
+[Ruby doc](http://ruby-doc.org/core-2.1.5/Enumerable.html)
 
-#Enumerables
+    all? [{ |obj| block } ] → true or false
+
+    any? [{ |obj| block }] → true or false
+
     find(ifnone = nil) { |obj| block } → obj or nil
       (1..100).find    { |i| i % 5 == 0 and i % 7 == 0 }   #=> 35
 
