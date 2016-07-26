@@ -66,6 +66,39 @@ Timeable has an instance variable time_created, and an initialize method that as
     c.time_created
     # => Mon Mar 27 18:34:31 EST 2006
 
+#Blocks
+
+## Example of method that accepts a block and returns how many seconds it takes to execute the code in the block:
+
+    def benchmark
+      start_time = Time.now
+      yield
+      end_time = Time.now
+      end_time-start_time
+    end
+
+##Example of use:
+    long_string = "abcde" * 5000000
+    reverse_run_time = benchmark { long_string.reverse }
+    puts "The #reverse method took #{reverse_run_time} seconds to run."
+
+#Regular expressions
+##Examples of use
+### Determine whether a string contains a Social Security Number.
+def has_ssn?(string)
+  string.match(/\d{3}-\d{2}-\d{4}/) != nil
+end
+
+### Find and return a Social Security Number.
+def grab_ssn(string)
+    string.match(/\d{3}-\d{2}-\d{4}/).to_s
+end
+
+### Find and return all Social Security Numbers.
+def grab_all_ssns(string)
+  string.scan(/\d{3}-\d{2}-\d{4}/)
+end
+
 #Errors
     class OrangeTree
       attr_reader :age, :height, :oranges
@@ -170,6 +203,11 @@ Any arguments passed to the matcher will be passed on to the predicate method.
 
     it "should raise an error if the tree has no oranges" do
       expect{tree.pick_an_orange}.to raise_error("This tree has no oranges")
+    end
+
+    it 'returns a number from one to the number of sides' do
+      die = Die.new
+      expect((1..die.side_count)).to cover die.roll
     end
 
     context "the tree is old enough to bear fruit" do
