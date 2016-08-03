@@ -32,8 +32,17 @@ class Race < ActiveRecord::Base
   has_many :horses, through: :entries
 end
 ```
+## Methods
+Dog.all returns an array of all the dog objects (rom 0 to many)
+Dog.where("name like '%Jada%'") returns an array (from 0 to many)
+Dog.find(1) 1 or 0 elements
+Dod.find_by_id(1) 1 or nil
 
-### Rakefile
+jada.update_attributes( {weight: 33} )
+tenley.destroy
+
+
+# Rakefile
 List all the possibilities into the Rakefile
 ```
 $ bundle exec rake -T
@@ -276,15 +285,50 @@ For now, we're just going to render the same view again, `greeting.erb`.
 
 ![snitch9](snitch1-9.png)
 
-
-
-
-
-
-
-
+##ERB template files
 layout.erb - What is not going to change between all the pages of the site is inside this file, it's the 'overall layout', IT IS ALWAYS THERE
 
 index.erb -_ it's the body that changes between all the pages, IT CHANGES
 
 index.erb get rendered inside the 'yield' field present into layout.erb
+
+#REST
+## What is it?
+- stands for:
+REpresentational
+State
+Transfer
+- It's not a formal protocol, but rather an "architectural style"
+- A **convention** for mapping CRUD actions to HTTP requests
+- It's stateless
+
+## What is it?
+- It's not a formal protocol, but rather an "architectural style"
+- A **convention** for mapping CRUD actions to HTTP requests
+- It's stateless
+## How do you implement these RESTful routes in your application?
+- Follow the conventions to make your code more readable, your routes easier to understand and follow!
+
+![Imgur](http://i.imgur.com/0Zu9rHR.png)
+
+## More about REST
+[REST](https://gist.github.com/case-eee/72715407554996828e0c#file-rest-md)
+
+# CRUD
+## What is CRUD?
+Behaviors for interacting with our data in our database
+Create, Read, Update, Delete data
+
+## Faking a PUT request
+```html
+<form action="/dogs" method="post">
+  <input type="hidden" name="_method" value="put">
+  <!-- form stuff..>
+</form>
+```
+Controler side:
+put '/dogs' do
+  #... update stuff
+end
+
+
