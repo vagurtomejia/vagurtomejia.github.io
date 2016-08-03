@@ -1,5 +1,5 @@
 
-#Active Records
+#Active Record
 Active Record is an Object-Relational Mapping system, or ORM.
 
 When bundler is installed, it provides a command-line utility. We can use this utility to install any necessary gems that are missing from our system (see Figure 3). Because the code base provides a Gemfile.lock file, Bundler will use this file to determine exactly which version of each gem to install. We'll begin most of our challenges going forward with this step of ensuring that all necessary gems are installed.
@@ -41,6 +41,13 @@ Dod.find_by_id(1) 1 or nil
 jada.update_attributes( {weight: 33} )
 tenley.destroy
 
+[Active Record Cheat sheet](https://gist.github.com/jessieay/3131622#file-ActiveRecord Cheat Sheet v1)
+
+## Validations
+[Validations and callbacks on Rails doc](http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html)
+
+## Callbacks
+[Callbacks on Rails doc](http://guides.rubyonrails.org/active_record_callbacks.html)
 
 # Rakefile
 List all the possibilities into the Rakefile
@@ -147,6 +154,7 @@ gem 'rspec'
 [More on Gemfiles](http://tosbourn.com/what-is-the-gemfile/)
 
 #Sinatra
+[Sinatrarb (Sinatra intro)](http://www.sinatrarb.com/intro.html)
 ## Definition
 <a href="http://www.sinatrarb.com" target="_blank">Sinatra</a> is a small
 Domain-Specific language (or DSL; a "language" that is used for a specific
@@ -292,6 +300,107 @@ index.erb -_ it's the body that changes between all the pages, IT CHANGES
 
 index.erb get rendered inside the 'yield' field present into layout.erb
 
+## Params
+### Retrieving params for a instance creation:
+- In the view:
+<form action="/dogs" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="dog[name]" value="" />
+  <br>
+
+  <label for="age">Age:</label>
+  <input type="text" name="dog[age]" value="" />
+  <br>
+
+  <label for="age">Weight:</label>
+  <input type="text" name="dog[weigth]" value="" />
+  <br>
+
+  <input type="submit" value="Add dog!">
+
+</form>
+
+- In the controller:
+
+post '/dogs' do
+  Dog.create(params[:dog])
+  redirect '/dogs'
+end
+
+### Inspect params
+raise params.inspect
+
+
+## Faking a PUT request
+GET edit, then PUT
+- Viewer side:
+```html
+<a href="/dogs/<%= @dog.id %>/edit">Edit this dog</a>
+```
+- Controler side: 
+get '/dogs/:id/edit' do
+  @dog = Dog.find(params[:id])
+  erb :edit
+end
+
+then,
+
+- Viewer side:
+<form action="/dogs/<%= @dog.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+  <label for="name">Name:</label>
+  <input type="text" name="dog[name]" value="<%= @dog.name %>" />
+  <br>
+
+  <label for="age">Age:</label>
+  <input type="text" name="dog[age]" value="<%= @dog.age %>" />
+  <br>
+
+  <label for="age">Weight:</label>
+  <input type="text" name="dog[weigth]" value="<%= @dog.weigth %>" />
+  <br>
+
+  <input type="submit" value="Update dog!">
+
+</form>
+
+- Controller side:
+
+put '/dogs' do
+  Dog.create(params[:dog])
+  redirect '/dogs'
+end
+
+
+Controler side:
+put '/dogs/:id' do
+  dog = Dog.find(params[:id])
+  dog.update(params[:dog])
+
+  redirect "/dogs/#{@dog.id}"
+end
+
+## Faking a DELETE request
+```html
+<form action="/dogs/<%= dog.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Kill the dog!">
+</form>
+```
+Controler side:
+delete '/dogs/:id' do
+  @dog = Dog.find(params[:id])
+  @dog.destroy
+
+  redirect '/dogs'
+end
+
+## Partial views
+<%= erb :_form_fields %>
+[Partials Cheat-sheet](https://www.learnhowtoprogram.com/lessons/partials-in-sinatra#cheat-sheet)
+
+
 #REST
 ## What is it?
 - stands for:
@@ -319,16 +428,9 @@ Transfer
 Behaviors for interacting with our data in our database
 Create, Read, Update, Delete data
 
-## Faking a PUT request
-```html
-<form action="/dogs" method="post">
-  <input type="hidden" name="_method" value="put">
-  <!-- form stuff..>
-</form>
-```
-Controler side:
-put '/dogs' do
-  #... update stuff
-end
+
+#Interesting ressources
+[HTTP protocol](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
+
 
 
