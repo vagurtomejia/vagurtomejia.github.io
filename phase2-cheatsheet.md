@@ -410,7 +410,10 @@ Transfer
 - It's not a formal protocol, but rather an "architectural style"
 - A **convention** for mapping CRUD actions to HTTP requests
 - It's stateless
+- [Test your REST](www.restular.com)
 
+
+#CRUD
 ## What is it?
 - It's not a formal protocol, but rather an "architectural style"
 - A **convention** for mapping CRUD actions to HTTP requests
@@ -431,6 +434,127 @@ Create, Read, Update, Delete data
 
 #Interesting ressources
 [HTTP protocol](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
+
+# Sessions and user authentication
+get '/dogs' do
+ @dogs = Dog.all
+
+ session[:dog_views] = 0 unless session[:dog_views] #Sinatra keeps track of the number of times I had view my dog
+ session[:dog_views] += 1
+
+ erb :index
+end
+
+## View
+[Video](https://talks.devbootcamp.com/sessions-and-user-authentication) at 29:54
+
+## Model
+```ruby
+class User < ActiveRecord::Base
+
+  def  password
+    @password ||= BCrypt::Password.new(encrypted_password)
+  end
+
+  def password=(new_password)
+    @password = BCrypt::Password.create(new_password)
+    self.encrypted_password = @password
+  end
+  
+  def authenticate(password)
+    self.password == password
+  end
+end
+```
+
+## Controllers
+### login.rb
+```ruby
+get '/login' do
+  erb :login
+end
+
+post '/login' do
+  user = User.find_by(username: params[:username])
+  if user.authenticate(params[:password]) #return true or false, whatever or not the password equals to the original
+    session[:user_id] = user.id
+    redirect '/dogs' #restricted area
+  else
+    erb :login
+  end
+end
+
+get '/logout' do
+  session.delete(:user_id)
+  redirect '/login'
+end
+```
+
+### dogs.rb
+```ruby
+get '/dogs' do
+  redirect '/login' unless session[:user_id]
+
+  @dogs = Dog.all
+
+  session[:dog_views] = 0 unless session[:dog_views]
+  session[:dog_views] += 1
+
+  erb :index
+end
+```
+
+##helper viewer that can be useful for debugging/inspcting:
+Session.inspect give us all the data/info in the session as a hash
+```ruby
+get '/session-viewer' do
+  session.inspect
+end
+```
+Accessible by localhost:9393/session-viewer
+
+#Random
+
+## Useful links
+[Encrypt passwords with bcrypt](https://github.com/codahale/bcrypt-ruby)
+
+tasks controller:
+tasks/new
+
+## Useful Sublime shortcuts
+Command + D => selects all the occureneces of an expression one by one
+Command + T => find a file
+
+be rake db:reset to drop, recreate and re-migrate the database
+
+
+post '/tasks' do
+title = params[:title]
+desc = params[:description]
+completed = false
+
+task = Task.new({ title: title, description: desc, completed: completed})
+
+if task.save
+  redirect '/tasks/#{task.id}'
+else
+  @errors = @task.errors
+  erb: 'task/new'
+end
+
+
+Errors
+======
+redirect "/tasks/#{task.id}?message="
+
+
+@current_user ||= x
+equals to
+@current_user || @current_user = x
+that means
+@current_user ||= some_expression means use @current_user if it's non-nil or true; otherwise, assign some_expression to @current_user and then use @current_user.
+
+
 
 
 
