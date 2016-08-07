@@ -7,6 +7,12 @@ When bundler is installed, it provides a command-line utility. We can use this u
 $ bundle install
 ```
 
+## Methods
+[Finder methods - API](http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find_by)
+[Query methods - API](http://edgeapi.rubyonrails.org/classes/ActiveRecord/QueryMethods.html)
+[Finding data](https://www.safaribooksonline.com/library/view/learning-rails/9780596154943/ch04s04.html)
+[Finding - Querying](http://culttt.com/2015/12/02/querying-with-active-record-in-ruby-on-rails/)
+
 ## Associations
 ![](https://github.com/chi-red-pandas-2016/active-record-associations-drill-at-the-races-challenge/blob/master/races_schema.png)
 ```ruby
