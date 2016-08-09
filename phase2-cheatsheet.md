@@ -8,6 +8,15 @@ $ bundle install
 ```
 
 ## Methods
+Dog.all returns an array of all the dog objects (rom 0 to many)
+Dog.where("name like '%Jada%'") returns an array (from 0 to many)
+Dog.find(1) 1 or 0 elements
+Dod.find_by_id(1) 1 or nil
+
+jada.update_attributes( {weight: 33} )
+tenley.destroy
+
+[Active Record Cheat sheet](https://gist.github.com/jessieay/3131622#file-ActiveRecord Cheat Sheet v1)
 [Finder methods - API](http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find_by)
 [Query methods - API](http://edgeapi.rubyonrails.org/classes/ActiveRecord/QueryMethods.html)
 [Finding data](https://www.safaribooksonline.com/library/view/learning-rails/9780596154943/ch04s04.html)
@@ -38,22 +47,16 @@ class Race < ActiveRecord::Base
   has_many :horses, through: :entries
 end
 ```
-## Methods
-Dog.all returns an array of all the dog objects (rom 0 to many)
-Dog.where("name like '%Jada%'") returns an array (from 0 to many)
-Dog.find(1) 1 or 0 elements
-Dod.find_by_id(1) 1 or nil
 
-jada.update_attributes( {weight: 33} )
-tenley.destroy
-
-[Active Record Cheat sheet](https://gist.github.com/jessieay/3131622#file-ActiveRecord Cheat Sheet v1)
-
-## Validations
+##Validations, errors and callbacks
+### Validations
 [Validations and callbacks on Rails doc](http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html)
 
-## Callbacks
+### Callbacks
 [Callbacks on Rails doc](http://guides.rubyonrails.org/active_record_callbacks.html)
+
+### Errors
+http://guides.rubyonrails.org/active_record_validations.html#working-with-validation-errors
 
 # Rakefile
 List all the possibilities into the Rakefile
