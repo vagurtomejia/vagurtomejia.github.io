@@ -176,6 +176,7 @@ example of setting a value:
 ###serialize() - returns string
 The .serialize() method creates a text string in standard URL-encoded notation. It can act on a jQuery object that has selected individual form controls, such as <input>, <textarea>, and <select>: $( "input, textarea, select" ).serialize();
 ex:
+
     <form id="style_editor" name="style_editor">
       <input name="selector" placeholder="css selector" />
       <input name="property" placeholder="property" />
@@ -376,4 +377,3 @@ end
 
 #Other ressources
 [CSS Mozilla documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
-
