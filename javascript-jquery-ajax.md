@@ -21,6 +21,9 @@
 jQuery(document).ready(function(){
   $("span").text("$100");
 });
+OR
+Shorthand for document ready:
+$(function(){
 
 ## Selectors
 ### id selector
@@ -136,7 +139,70 @@ var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
 $('.usa').append(message);
 $('.book').remove()
 
-##Acting on interaction
+##Useful JQuery methods
+###attr(), prop(), is() 
+[attr documentation](http://api.jquery.com/attr/)
+[prop documentation](http://api.jquery.com/prop/)
+[is documentation](http://api.jquery.com/is/)
+
+$( "input" )
+  .change(function() {
+    var $input = $( this );
+    $( "p" ).html( ".attr( 'checked' ): <b>" + $input.attr( "checked" ) + "</b><br>" +
+      ".prop( 'checked' ): <b>" + $input.prop( "checked" ) + "</b><br>" +
+      ".is( ':checked' ): <b>" + $input.is( ":checked" ) + "</b>" );
+  })
+  .change();
+###val() - returns string or number or array
+[val documentation](http://api.jquery.com/val/)
+The .val() method is primarily used to get the values of form elements such as input, select and textarea.
+When called on an empty collection, it returns undefined.
+
+
+###css(propertyName) - returns string
+[css documentation](http://api.jquery.com/css/)
+-Get the value of a computed style property for the first element in the set of matched elements or set one or more CSS properties for every matched element.
+example of getting multiple property values:
+  var styleProps = $( this ).css([
+    "width", "height", "color", "background-color"
+  ]);
+
+-To set a specified CSS property, use the following syntax:
+  css("propertyname","value");
+example of setting a value:
+  $(selector).css(property, value);
+
+
+###serialize() - returns string
+The .serialize() method creates a text string in standard URL-encoded notation. It can act on a jQuery object that has selected individual form controls, such as <input>, <textarea>, and <select>: $( "input, textarea, select" ).serialize();
+ex:
+    <form id="style_editor" name="style_editor">
+      <input name="selector" placeholder="css selector" />
+      <input name="property" placeholder="property" />
+      <input name="value" placeholder="value" />
+      <input type="submit" value="Style it!" />
+    </form>
+
+    $( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      console.log( $( this ).serialize() );
+      //=>selector=a&property=s&value=d
+    });
+[serialize documentation](https://api.jquery.com/serialize/)
+
+##Acting on interaction (events handlers)
+###Events and events handlers
+* [Basics of jQuery Events][]
+* [Event Handling][]
+* [event.preventDefault() method][]
+
+[Basics of jQuery Events]: http://learn.jquery.com/events/event-basics/
+[Event Handling]: http://learn.jquery.com/events/handling-events/
+[event.preventDefault() method]: http://api.jquery.com/event.preventDefault/
+
+If you bind to the `submit` event, you should consider using the
+[event.preventDefault() method][] provided by jQuery.
+
 ###Click interaction
 Let's start by wrapping all of our previous code in a click handler for any <button> elements using the on() method.
 
@@ -228,6 +294,18 @@ Let's add some result filtering options to our page. We want to be able to click
 [jQuery Event Basics]: http://learn.jquery.com/events/event-basics/
 
 #AJAX
+[Ajax documentation](http://api.jquery.com/jquery.ajax/)
+##Ajax method
+     $.ajax({
+       method: $form.attr('method'), // Good to do for GET and POST
+       url: $form.attr('action'),  
+       data: postData
+     })
+     .done( function( responseHtml ) {
+       $form[0].reset();
+       $("#band-list").append( responseHtml );
+     });
+
 ##public/js/application.js
     $(document).ready(function() {
       $('form').submit(function(e) {
@@ -258,6 +336,14 @@ else
   erb :index
 end
 
-#Javascript
-[Cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
+##Ajax livecode example
+
+[Ellie breakout on Ajax](https://github.com/chi-red-pandas-2016/sinatra-skeleton-mvc-challenge/compare/example...chi-red-pandas-2016:ellie-ajax-jquery-livecode)
+
+#Cheat-sheets
+[JQuery cheat sheet](https://oscarotero.com/jquery/)
+[Javascript cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
+
+#Other ressources
+[CSS Mozilla documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 
