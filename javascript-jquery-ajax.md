@@ -306,6 +306,36 @@ Let's add some result filtering options to our page. We want to be able to click
        $("#band-list").append( responseHtml );
      });
 
+##Complete example with post request
+    $(document).ready(function() {
+      // This is called after the document has loaded in its entirety
+      // This guarantees that any elements we bind to will exist on the page
+      // when we try to bind to them
+
+      // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+      $('#cheer_caller').on('submit', function(event) {
+        event.preventDefault();
+        var $form = $(this);
+        var method = $form.attr('method');
+        var url = $form.attr('action');
+        var postData = $form.serialize();
+
+        var request = $.ajax({
+          method: method,
+          url: url,
+          data: postData
+        });
+
+        request.done( function( msg ) {
+
+           $(".sign-text span").text(msg);
+           $form[0].reset();
+           $('input[name="cheer_name"]').focus();
+
+         });
+
+      });
+    });
 ##public/js/application.js
     $(document).ready(function() {
       $('form').submit(function(e) {
