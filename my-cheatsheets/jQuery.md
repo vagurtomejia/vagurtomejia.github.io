@@ -1,6 +1,6 @@
 #jQuery
 
-##Include the jQuery library and our custom javascript code
+##Include the jQuery library and the custom javascript code
 ```html
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,8 @@
   </head>
   <body>
     <div class="homepage-wrapper">
-      <h2>Welcome to jQuery Travels - Traversing the DOM since 2006</h2>
-      <p>Fly to New York today for as little as <span>$299.99</span></p>
+      <h2>Welcome</h2>
+      <p>Fly to New York for<span>$299.99</span></p>
     </div>
     <script src="jquery.min.js"></script>
     <script src="application.js"></script>
@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 });
 ```
 OR
-```javascript
+```js
 Shorthand for document ready:
 $(function(){
 .....
@@ -33,12 +33,12 @@ $(function(){
 
 ## Selectors
 ### id selector
-```javascript
+```js
 $( "#id" )
 ```
 [id jQuery doc](http://api.jquery.com/id-selector/)
 ### class selector
-```javascript
+```js
 $( ".class" )
 ```
 [class jQuery doc](http://api.jquery.com/class-selector/)
@@ -78,69 +78,69 @@ $( ".class" )
 
 ###descendant selectors
 select all of the li elements within the #tours list using a descendant selector.
-```javascript
+```js
 $("#tours  li")
 ```
 
 ###direct descendant : child slector
 Let's use a direct child selector to only select the li items that are direct children of #tours.
-```javascript
+```js
 $("#tours > li")
 ```
 
 ###multiple different items
 select all tours that are from Asia and all tours that are On Sale. You'll need to use multiple selectors for this, with the classes for .asia and .sale.
-```javascript
+```js
 $("#tours > .asia, #tours > .sale")
 ```
 
 ###pseudo-selectors
 ####:first
 Use the :first pseudo selector to select the first tour in the list.
-```javascript
+```js
 $("#tours li:first")
 ```
 
 ####:even
 Find the direct children li elements, and then use the :even pseudo selector to select every other li element.
-```javascript
+```js
 $("#tours > li:even")
 ```
 
 ##Traversing
 ###find()
 To select all vacations from America we can use $("#vacations .america"). This or traversal with the find method:
-```javascript
+```js
 $("#vacations").find(".america")
 ```
 
 ###first()
 Using traversal or filtering, select the first vacation li element from the list.
-```javascript
+```js
 $("#vacations").find("li").first()
 ```
 
 ###last()
 Find the last li within #vacations using traversal 
-```javascript
+```js
 $("#vacations").find("li").last()
 ```
 
 ###prev()
 Use traversal with the prev() method to select the vacation that is right before the last one.
-```javascript
+```js
 $("#vacations li").last().prev()
 ```
 
 ###parent()
 Using traversal, select all tours that have a .featured class on their title by getting the parent() of featured titles.
-```javascript
+```js
 $(".featured").parent()
 ```
 
 ###children()
 Select all the tours: $("#tours > li"). You immediately realize it can be done better, refactor this to use traversal with children().
-```javascript
+```js
 $("#tours").children()
 ```
 
@@ -153,14 +153,14 @@ When the page loads, we'll show a message to the traveler letting them know how 
 ###Adding to the DOM
 ####before()
 Let's add the phone number immediately before() the "Book Now" button. You can check out the HTML of the rendered page by clicking on the HTML tab below.
-```javascript
+```js
 var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
 $(".book").before(message)
 ```
 
 ####append()
 append() our <span> to the bottom of the .usa element. Let's change the code to add it there instead.
-```javascript
+```js
 var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
 $(".usa").append(message)
 ```
@@ -168,7 +168,7 @@ $(".usa").append(message)
 ###Removing from the DOM
 ####remove()
 Remove that "Book Now" button until we can implement it.
-```javascript
+```js
 var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
 $('.usa').append(message);
 $('.book').remove()
@@ -180,7 +180,7 @@ $('.book').remove()
 [prop documentation](http://api.jquery.com/prop/)
 [is documentation](http://api.jquery.com/is/)
 
-```javascript
+```js
 $( "input" )
   .change(function() {
     var $input = $( this );
@@ -201,7 +201,7 @@ When called on an empty collection, it returns undefined.
 [css documentation](http://api.jquery.com/css/)
 ####Get the value of a computed style property for the first element in the set of matched elements or set one or more CSS properties for every matched element.
 example of getting multiple property values:
-```javascript
+```js
   var styleProps = $( this ).css([
     "width", "height", "color", "background-color"
   ]);
@@ -210,7 +210,7 @@ example of getting multiple property values:
 ####To set a specified CSS property, use the following syntax:
   css("propertyname","value");
 example of setting a value:
-```javascript
+```js
   $(selector).css(property, value);
 ```
 
@@ -231,7 +231,7 @@ ex:
     </form>
 ```
 
-```javascript
+```js
     $( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       console.log( $( this ).serialize() );
@@ -256,7 +256,7 @@ If you bind to the `submit` event, you should consider using the
 ###Click interaction
 Let's start by wrapping all of our previous code in a click handler for any `<button>` elements using the on() method.
 
-```javascript
+```js
 $( "button" ).click(function() {
   var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
   $('.usa').append(message);
@@ -264,7 +264,7 @@ $( "button" ).click(function() {
 });
 ```
 or
-```javascript
+```js
 $('button').on('click', function() {
     var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
     $('.usa').append(message);
@@ -273,13 +273,13 @@ $('button').on('click', function() {
 ```
 
 ####Remove only the clicked button
-```javascript
+```js
 $(this).remove();
 ```
 
 ####Relative Traversing
 * Add the message after() the button we click on.
-```javascript
+```js
     var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
     $(this).after(message);
 ```
@@ -296,12 +296,12 @@ $(this).remove();
 </li>
 ```
 
-```javascript
+```js
 $(this).closest('.tour').append(message);
 ```
 
 ###All the code
-```javascript
+```js
 $(document).ready(function() {
   $('button').on('click', function() {
     var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
@@ -315,14 +315,14 @@ $(document).ready(function() {
 Let's add a bit more incentive to get people to book these tours by offering a discount if they book today. Create a discount variable, and then assign the discount that is stored in the data() attribute on the .tour element.
 We want to show this discount to the user in the message we show after the "Book Now" button is clicked.
 
-```javascript
+```js
 var discount = $(this).closest('.tour').data('discount');
 var message = $('<span>Call 1-555-jquery-air for a $'+discount+' discount.</span>');
 ```
 
 ##Better handlers
 There is a small problem with the way our on() handler is being used. Currently, it is targeting all of the `<button>` elements on the screen. Refactor the on() handler to only target `<button>` elements within a .tour by using the selector argument of the on() method.
-```javascript
+```js
     $(document).ready(function() {
       $('.tour').on('click', 'button', function() {
         ...
@@ -331,7 +331,7 @@ There is a small problem with the way our on() handler is being used. Currently,
 ##Filters
 Let's add some result filtering options to our page. We want to be able to click on a filter and highlight the corresponding tours with a .highlight class..(on-sale or .featured filters).
 
-```javascript
+```js
 $(document).ready(function() {
   $('#filters').on('click', '.on-sale', function() {
     $('.tour').removeClass('highlight');
@@ -345,6 +345,53 @@ $(document).ready(function() {
 });
 ```
 
+##DBC Challenges
+- (Style editor)[https://github.com/chi-red-pandas-2016/behavior-drill-style-editor-challenge/tree/solo_vagurtomejia]
+- (Tabbed interface)[https://github.com/chi-red-pandas-2016/behavior-drill-tabbed-interface-challenge/blob/solo_vagurtomejia/tabs.js]
+- (Comments form)(https://github.com/chi-red-pandas-2016/behavior-drill-add-comments-challenge/tree/solo_vagurtomejia)
+
+##Style editor
+```js
+$(function(){
+  $('#style_editor').on('submit', function(event) {
+    event.preventDefault();
+
+    var selector = $("input[name='selector']").val();
+    var property = $("input[name='property']").val();
+    var value = $("input[name='value']").val();
+
+    $(selector).css(property, value);
+
+  });
+});
+```
+##Tabbed interface
+```js
+$(document).ready(function () {
+  //listen to the click on every li of a ul of class 'tabs'
+  $("ul.tabs li").on('click', function() {
+    var $li = $(this);
+
+    //====tabs management====
+    //desactivate all the tabs
+    var $siblings = $li.siblings();
+    $siblings.removeClass('active');
+    //activate the clicked tab
+    $li.addClass('active');
+    var $a = $li.find('a');
+    var href = $a.attr('href');
+
+    //====tabs content management====
+    //turn off the display of the content for all
+    var $contentTabs = $('.tab-content');
+    $contentTabs.hide();
+    //display the current tab content only
+    $(href).show();
+
+    });
+});
+```
+
 ##Ressources
 - [jQuery Cheat Sheet](https://oscarotero.com/jquery/)
 - [jQuery Event Basics][]
@@ -354,7 +401,7 @@ $(document).ready(function() {
 - [.val()][]
 - [CSS Mozilla documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 - [JQuery cheat sheet](https://oscarotero.com/jquery/)
-[Javascript cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
+- [Javascript cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
 
 [.append()]: http://api.jquery.com/append/
 [.appendTo()]: http://api.jquery.com/appendTo/
@@ -362,3 +409,6 @@ $(document).ready(function() {
 [event.preventDefault()]: http://api.jquery.com/event.preventDefault/
 [Handling Events]: http://learn.jquery.com/events/handling-events/
 [jQuery Event Basics]: http://learn.jquery.com/events/event-basics/
+
+
+
