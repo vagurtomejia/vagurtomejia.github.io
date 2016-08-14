@@ -7,6 +7,10 @@ When bundler is installed, it provides a command-line utility. We can use this u
 $ bundle install
 ```
 
+If problems during the instalation with Active suppport later version try verion 4.2.7 (into the gemfile):
+```ruby
+gem 'activesupport', '4.2.7'
+```
 ## Methods
 Dog.all returns an array of all the dog objects (rom 0 to many)
 Dog.where("name like '%Jada%'") returns an array (from 0 to many)
@@ -52,6 +56,7 @@ end
 ##Validations, errors and callbacks
 ### Validations
 [Validations and callbacks on Rails doc](http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html)
+[Custom methods for validations](http://guides.rubyonrails.org/active_record_validations.html#custom-methods)
 
 ### Callbacks
 [Callbacks on Rails doc](http://guides.rubyonrails.org/active_record_callbacks.html)
