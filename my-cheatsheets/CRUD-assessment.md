@@ -13,19 +13,21 @@
 $ be rake generate:migration NAME=create_users
 
 ###Migration class (db/migrate/xxxx_create_users.rb)
-    class CreateUsers < ActiveRecord::Migration
-      def change
-        create_table :users do |t|
-          t.string :name,           null:false
-          t.string :email,          null:false,  unique: true
-          t.string :password_hash,  null:false
+```ruby
+class CreateUsers < ActiveRecord::Migration
+  def change
+    create_table :users do |t|
+      t.string :name,           null:false
+      t.string :email,          null:false,  unique: true
+      t.string :password_hash,  null:false
 
-          t.timestamps
+      t.timestamps
 
-          t.index :email,           unique: true
-        end
-      end
+      t.index :email,           unique: true
     end
+  end
+end
+```
 
 ###Run migration
 $ be rake db:migrate
@@ -34,6 +36,7 @@ $ be rake db:migrate
 ###Generate migration
 $ be rake generate:migration NAME=create_entries
 ###Migration class (db/migrate/xxx_create_entries.rb)
+```ruby
     class CreateEntries < ActiveRecord::Migration
       def change
         create_table :entries do |t|
@@ -46,6 +49,7 @@ $ be rake generate:migration NAME=create_entries
         end
       end
     end
+```
 ###Run migration
 $ be rake db:migrate
 
@@ -57,33 +61,33 @@ $ be rake db:migrate
 $ be rake generate:model NAME=user
 
 ###User class (app/models/user.rb)
-    class User < ActiveRecord::Base
+```ruby
+class User < ActiveRecord::Base
 
-      validates :email, uniqueness: true
-      validates_presence_of :email, :name, :password
+  validates :email, uniqueness: true
+  validates_presence_of :email, :name, :password
 
 
-      def self.authenticate(email, password)
-        logging_user = User.find_by(email: email)
-        if logging_user && logging_user.password == password
-          return logging_user
-        end
-        nil
-      end
+  def self.authenticate(email, password)
 
-      def password
-        @password ||= BCrypt::Password.new(password_hash)
-      end
-
-      def password=(new_password)
-        @password = BCrypt::Password.create(new_password)
-        self.password_hash = @password
-      end
-
+    logging_user = User.find_by(email: email)
+    if logging_user && logging_user.password == password
+      return logging_user
     end
+    nil
+  end
 
+  def password
+    @password ||= BCrypt::Password.new(password_hash)
+  end
 
+  def password=(new_password)
+    @password = BCrypt::Password.create(new_password)
+    self.password_hash = @password
+  end
 
+end
+```
 
 
 #Examples of tables and models
