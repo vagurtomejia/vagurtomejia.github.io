@@ -3,18 +3,25 @@
 ##Include the jQuery library and the custom javascript code
 ```html
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
-    <div class="homepage-wrapper">
-      <h2>Welcome</h2>
-      <p>Fly to New York for<span>$299.99</span></p>
-    </div>
-    <script src="jquery.min.js"></script>
-    <script src="application.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/application.css">
+  <!--
+    using jquery, your scripts goes into the application.js file
+  -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title>Your title</title>
+</head>
+<body>
+  <%= yield %>
+</body>
 </html>
 ```
 

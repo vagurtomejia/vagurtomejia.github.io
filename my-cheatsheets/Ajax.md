@@ -89,9 +89,10 @@ Notice how we have moved the a part from the selector to the second parameter po
 ```
 
 ##DBC Challenges
-- (Cheering mascot)[https://github.com/chi-red-pandas-2016/cheering-mascot-sinatra-2-asynchronous-forms-challenge/tree/solo_vagurtomejia]
-- (Lucky Ajax)[https://github.com/chi-red-pandas-2016/lucky-ajax-challenge/tree/solo_vagurtomejia]
-- (Hacker news)[https://github.com/chi-red-pandas-2016/ajaxifying-hacker-news-challenge/tree/solo_vagurtomejia]
+- [Cheering mascot](https://github.com/chi-red-pandas-2016/cheering-mascot-sinatra-2-asynchronous-forms-challenge/tree/solo_vagurtomejia)
+- [Lucky Ajax](https://github.com/chi-red-pandas-2016/lucky-ajax-challenge/tree/solo_vagurtomejia)
+- [Hacker news](https://github.com/chi-red-pandas-2016/ajaxifying-hacker-news-challenge/tree/solo_vagurtomejia)
+- [Horses](https://github.com/chi-red-pandas-2016/ajax-checkpoint-challenge/tree/solo_vagurtomejia_final)
 
 ###Cheering mascot
 ```js
@@ -309,6 +310,98 @@ post '/posts' do
   end
 
 end
+```
+
+###Horses
+javascript:
+
+```js
+
+$(document).ready(function() {
+
+  //load the new horse form dynamically
+  $('#new-horse-button-form').on('submit', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var $buttonForm = $(this);
+    var action = $buttonForm.attr('action');
+    var method = $buttonForm.attr('method');
+
+    $.ajax({
+      url: action,
+      type: method
+    })
+    .done(function(responseHtml) {
+      console.log("success");
+      $buttonForm.closest('div').append(responseHtml);
+      $buttonForm.hide();
+    })
+    .fail(function() {
+      console.log("error");
+    });
+
+  });
+
+
+//Update the list of horses after Submitting the Form form a new horse
+$('#horses-div').on('submit', 'form#new-horse-form', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+
+  $('section.errors').remove();
+
+  var $newHorseForm = $(this);
+  var action = $newHorseForm.attr('action');
+  var method = $newHorseForm.attr('method');
+  var postData = $newHorseForm.serialize();
+
+  $.ajax({
+    url: action,
+    type: method,
+    data: postData,
+  })
+  .done(function(responseHtml) {
+    console.log("success");
+    $('#horses-div').find('ul').append(responseHtml);
+    $newHorseForm.hide();
+    $('#new-horse-button-form').show();
+
+  })
+  .fail(function(jqXhr, textStatus, errorThrown) {
+    console.log("error");
+    //console.log(jqXhr.responseText);
+    $newHorseForm.before(jqXhr.responseText);
+  });
+
+
+});
+
+//Dynamically Load Horse Details by clicking on the horse link
+$('#horses-list').on('click', 'a', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+
+  var $horseLink = $(this);
+  var href = $horseLink.attr('href');
+
+  $.ajax({
+    url: href,
+    type: 'GET',
+  })
+  .done(function(responseHtml) {
+    console.log("success");
+    $horseLink.closest('li').append(responseHtml);
+  })
+  .fail(function() {
+    console.log("error");
+  });
+
+});
+
+
+});
+
+
 ```
 
 ##Ajax livecode example

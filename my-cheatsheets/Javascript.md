@@ -138,11 +138,64 @@ person.lastName = "Smith";
 person.fullName();
 ```
 
+##Tests
+###Jasmine
+To run the tests, we open the `SpecRunner.html` file in the browser.
+[Jasmine doc](http://jasmine.github.io/2.4/introduction.html)
+
+##DBC Challenges
+- [Garden and Flowers](https://github.com/chi-red-pandas-2016/oojs-garden-challenge/tree/solo_vagurtomejia)
+###Flower
+```js
+var Flower = function(name, color) {
+  this.name = name;
+  this.color = color;
+}
+```
+
+###Garden
+```js
+var garden = {
+  name: "Kula Botanical Garden",
+  location: "Makawao",
+  flowers: [],
+  addFlower: function(flower) {
+    this.flowers.push(flower);
+  },
+  plant: function(newFlowers) {
+    this.flowers.push.apply(this.flowers, newFlowers);
+    //other option:
+    //this.flowers = this.flowers.concat(newFlowers);
+  },
+  remove: function(flower) {
+    flowerIndex = this.flowers.indexOf(flower);
+    this.flowers.splice(flowerIndex,1);
+  },
+  flowersByColor: function(color) {
+
+    return this.flowers.filter(function(flower) {
+      return flower.color === color;
+    });
+
+  },
+
+  flowersByName: function(name) {
+
+    return this.flowers.filter(function(index) {
+      return index.name === name;
+    });
+  }
+
+}
+```
 
 ##Ressources
-[MDN documentation](https://developer.mozilla.org/fr/docs/Web/JavaScript)
-[JQuery cheat sheet](https://oscarotero.com/jquery/)
-[Javascript cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
-[OOJS lecture](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+- [MDN documentation](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+- [MDN Javscript reference](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference)
+- [Arrays MDN doc](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array)
+- [Javascript cheat Sheet](http://wps.aw.com/wps/media/objects/2234/2287950/javascript_refererence.pdf)
+- [Objects and classes](https://github.com/chi-red-pandas-2016/javascript-from-ruby-challenge/blob/master/07-objects-and-classes/01-what-are-objects-and-classes.md)
+- [OOJS lecture](https://gist.github.com/alycit/e6f5f20ced9b42a64f5a)
+- [JQuery cheat sheet](https://oscarotero.com/jquery/)
 
 
