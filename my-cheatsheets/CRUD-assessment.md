@@ -148,7 +148,9 @@ end
   end
 end
 
-
+##Useful shotcuts
+- command + d para seleccionar varias palabras
+- command + option + I para mostrar el inspector en el browser
 
 ##Problem solving
 ###Problems with the user cookies:
