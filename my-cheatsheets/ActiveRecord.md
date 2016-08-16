@@ -19,6 +19,7 @@ tenley.destroy
 [Calculations](http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html)
 
 ## Associations
+###Jockey-entry-race
 ![](https://github.com/chi-red-pandas-2016/active-record-associations-drill-at-the-races-challenge/blob/master/races_schema.png)
 ```ruby
 class Jockey < ActiveRecord::Base
@@ -41,6 +42,40 @@ class Race < ActiveRecord::Base
   has_many :entries
   has_many :jockeys, through: :entries
   has_many :horses, through: :entries
+end
+```
+
+###Hotel-room-booking
+![](https://github.com/chi-red-pandas-2016/active-record-associations-drill-hotels-challenge/blob/master/hotels_schema.png)
+```ruby
+class Booking < ActiveRecord::Base
+  belongs_to :guest, class_name: "User"
+  belongs_to :room
+  has_one :hotel, through: :room
+end
+```
+
+```ruby
+class Hotel < ActiveRecord::Base
+  has_many :rooms
+  has_many :bookings, through: :rooms
+  has_many :booked_guests, through: :bookings, source: :guest
+end
+```
+
+```ruby
+class Room < ActiveRecord::Base
+  has_many :bookings
+  belongs_to :hotel
+  #has_many :users, through: :bookings
+end
+```
+
+```ruby
+class User < ActiveRecord::Base
+  has_many :bookings, foreign_key: "guest_id"
+  has_many :booked_rooms, through: :bookings, source: :room
+  has_many :booked_hotels, through: :booked_rooms, source: :hotel
 end
 ```
 

@@ -189,6 +189,91 @@ var garden = {
 }
 ```
 
+##Fixing issues
+###Var scope: local to functions
+Variables are function scope if we use 'var':
+
+###Var scope: global
+
+Variables are gobal scope if we do not use 'var'
+```js
+function a() {
+  for(i=0; i < 10; i++) {
+    b();
+  }
+}
+
+function b() {
+  for(i=0; i < 100; i++) {
+    console.log(i);
+  }
+}
+```
+
+##DBC challenges
+- [Orange Tree](https://github.com/chi-red-pandas-2016/oojs-orange-tree-challenge/tree/solo_vagurtomejia)
+- [Station and bikes](https://github.com/chi-red-pandas-2016/oojs-bikes-and-stations-challenge/tree/pair-DanielJPark%2Ckellymp/src)
+###OrangeTree
+```js
+var OrangeTree = function() {
+  this.age = 0;
+  this.height = 0;
+  this.oranges = [];
+
+  this.isMature = function() {
+    if (this.age < 7)
+      return false;
+    else
+      return true;
+  }
+
+  this.isDead = function() {
+    return this.age >= 100;
+  }
+
+  this.hasOranges = function() {
+    return this.oranges.length > 0;
+  }
+
+  this.passGrowingSeason = function() {
+
+    if (this.isDead())
+      return;
+
+    this.age += 1;
+    if (this.height < 25)
+       this.height += 2.5;
+
+     if (this.isMature()) {
+      this.oranges = [];
+      var numberOfOranges = Math.floor((Math.random() * 300) + 100);
+      for (i = 0; i < numberOfOranges; i++) {
+          this.oranges.push(new Orange());
+      }
+    }
+  }
+
+  this.pickOrange = function() {
+    return this.oranges.pop();
+  }
+
+};
+```
+
+###Orange
+```js
+var Orange = function() {
+  this.diameter = this.calculateDiameter();
+}
+
+Orange.prototype.minOrangeDiameter = 2.5;
+Orange.prototype.maxOrangeDiameter = 3.2;
+
+Orange.prototype.calculateDiameter = function() {
+  return (Math.random() * (this.maxOrangeDiameter - this.minOrangeDiameter)) + this.minOrangeDiameter;
+}
+```
+
 ##Ressources
 - [MDN documentation](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 - [MDN Javscript reference](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference)
